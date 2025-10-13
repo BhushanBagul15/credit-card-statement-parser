@@ -45,17 +45,18 @@
         </dependency>
 
         <!-- Apache PDFBox - PDF Text Extraction -->
+        <!-- Apache PDFBox - PDF Text Extraction -->
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Apache PDFBox Tools -->
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox-tools</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Lombok - Reduce Boilerplate Code -->
