@@ -1,4 +1,4 @@
-package com.creditcard.parser.model;
+package com.example.demo.parser.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

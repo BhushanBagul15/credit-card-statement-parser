@@ -14,9 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,9 +22,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * REST Controller for Credit Card Statement Parsing
- */
+
+@CrossOrigin(origins = "http://localhost:5174")
 @RestController
 @RequestMapping("/api/statements")
 @Tag(name = "Statement Parser", description = "APIs for parsing credit card statements")
@@ -38,9 +34,7 @@ public class StatementParserController {
     @Autowired
     private ParserService parserService;
 
-    /**
-     * Health check endpoint
-     */
+
     @GetMapping("/health")
     @Operation(summary = "Health check", description = "Check if API is running")
     public ResponseEntity<Map<String, String>> health() {
@@ -51,16 +45,14 @@ public class StatementParserController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Parse a credit card statement PDF
-     */
+
     @PostMapping(value = "/parse", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Parse Statement", description = "Upload and parse a credit card statement PDF")
     public ResponseEntity<?> parseStatement(@RequestParam("file") MultipartFile file) {
 
         logger.info("Received file upload request: {}", file.getOriginalFilename());
 
-        // Validate file
+
         if (file.isEmpty()) {
             return ResponseEntity.badRequest()
                     .body(createErrorResponse("No file uploaded"));
@@ -72,13 +64,13 @@ public class StatementParserController {
         }
 
         try {
-            // Save file temporarily
+
             File tempFile = saveTemporaryFile(file);
 
-            // Parse the statement
+
             StatementData parsedData = parserService.parseStatement(tempFile);
 
-            // Clean up temporary file
+
             tempFile.delete();
 
             if (parsedData == null || !parsedData.isValid()) {
@@ -96,9 +88,7 @@ public class StatementParserController {
         }
     }
 
-    /**
-     * Get list of supported issuers
-     */
+
     @GetMapping("/supported-issuers")
     @Operation(summary = "Supported Issuers", description = "Get list of supported credit card issuers")
     public ResponseEntity<?> getSupportedIssuers() {
@@ -107,8 +97,8 @@ public class StatementParserController {
                 "HDFC Bank",
                 "ICICI Bank",
                 "SBI Card",
-                "Axis Bank",
-                "American Express"
+                "Axis Bank"
+
         });
         response.put("count", 5);
         return ResponseEntity.ok(response);

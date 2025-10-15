@@ -5,7 +5,7 @@ package com.example.demo.parser.issuer;
 import com.example.demo.parser.extractor.AdvancedPDFExtractor;
 import com.example.demo.parser.extractor.PDFTextExtractor;
 import com.example.demo.parser.model.StatementData;
-import com.creditcard.parser.model.Transaction;
+import com.example.demo.parser.model.Transaction;
 import com.example.demo.parser.CreditCardParser;
 import com.example.demo.parser.util.AmountParser;
 import com.example.demo.parser.util.DateParser;
